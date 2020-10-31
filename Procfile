@@ -1,2 +1,2 @@
-web: gunicorn TechnicalRanjit.wsg
+web: gunicorn TechnicalRanjit.wsgi
 
