@@ -1,0 +1,77 @@
+@media screen and (max-width: 992px){
+    p{
+        font-size: 100%;
+    }
+    h1{
+        font-size: 250% !important;
+    }
+    h2{
+        font-size: 200%;
+    }
+    /*---Welcome Section--*/
+    .welcome h1, .welcome h1 span{
+        font-size: 30px !important;
+    }
+    .welcome p{
+        width: 70%;
+        margin: 0 auto;
+    }
+    /*---Start ONE-FOURTH Section--*/
+    .one-fourth, .one-fourth-services {
+        margin: 4% 0;
+    }
+    .one-half-wrapper{
+        width: 90%;
+        margin: 0 auto;
+    }
+    .button-default{
+        padding: 12px 35px;
+    }
+    .services{
+        padding: 4% 0;
+    }
+    /*Contact Section*/
+    .counter-area {
+        padding: 0px;
+    }
+    .goals img {
+        max-width: 170px;
+        max-height: 170px;
+    }
+}
+@media screen and (max-width: 768px) {
+    h1{
+        font-size: 200% !important;
+    }
+    h2{
+        font-size: 180% !important;
+    }
+    .single-address h4{
+        font-size: 150% !important;
+    }
+    .one-fourth, .one-fourth-services {
+        padding-top: 2%;
+    }
+    .intro button{
+        width: 180px;
+        height: 50px;
+        background-color: transparent;
+        color: white;
+        font-weight: 100;
+        border: 1px solid #f5f5f5;
+        font-size: 130%;
+    }
+    .button-default{
+        padding: 10px 30px;
+    }
+    .contact-form .form-group input {
+        font-size: 15px;
+    }
+    .services{
+        padding: 0 0 6% 0;
+    }
+    /*Contact Section*/
+    .contact-right{
+        margin-top: 10px;
+    }
+}
