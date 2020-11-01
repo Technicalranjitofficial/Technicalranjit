@@ -1,12 +1,16 @@
+import random
+
 from django.shortcuts import render, get_object_or_404
 from .models import *
 # Create your views here.
 
 
 def YoutubeMain(request):
-    obj = YoutubeSection.objects.all().order_by("created_date").reverse()
+    object = list(YoutubeSection.objects.all())
+    object_count=YoutubeSection.objects.all().count()
+    othersVideo=random.sample(object,object_count)
 
-    return render(request, "Youtubevideo/chechVideo.html", {'object': obj})
+    return render(request, "Youtubevideo/chechVideo.html", {'object': othersVideo})
 
     # query = request.GET.get('q')
     # if query:
