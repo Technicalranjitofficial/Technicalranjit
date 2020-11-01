@@ -246,7 +246,7 @@
                 </div>
                 <div id="owl-demo" class="owl-carousel carousel" data-car-length="4" data-items="4" data-loop="true" data-nav="false" data-autoplay="true" data-autoplay-timeout="3000" data-dots="false" data-auto-width="false" data-responsive-small="1" data-responsive-medium="2" data-responsive-xlarge="5">
 
-                    {% for post in object %}
+                    {% for post in recent_post|slice:"10" %}
                     <div class="item">
                         <figure class="premium-img">
                             <img src="{{ post.videoimage}}" alt="carousel">
@@ -1198,7 +1198,7 @@
                             </div>
                             <div class="widgetContent">
 
-                                {% for post in object|slice:"3" %}
+                                {% for post in recent_post|slice:"3" %}
                                 <div class="media-object">
                                     <div class="media-object-section">
                                         <div class="recent-img">

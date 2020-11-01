@@ -22,4 +22,7 @@ urlpatterns = [
     path('privacy-policy/',privacypolicy,name="privacy_policy"),
     path('terms_conditions/', termscondition, name="terms_conditions"),
 
+#     search_result_section
+    path('videoSection/search_result',search_result,name="search_result"),
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

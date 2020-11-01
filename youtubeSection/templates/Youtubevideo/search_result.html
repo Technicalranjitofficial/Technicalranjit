@@ -1,4 +1,8 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
 
 {% load static %}
 <!doctype html>
@@ -276,8 +280,9 @@
                             </div>
                             <div id="search-bar" class="clearfix search-bar-light">
                                 <form method="post">
+                                    {% csrf_token %}
                                     <div class="search-input float-left">
-                                        <input type="search" name="search" placeholder="Seach Here your video">
+                                        <input type="text" name="q" placeholder="Seach Here your video">
                                     </div>
                                     <div class="search-btn float-right text-right">
                                         <button class="button" name="search" type="submit">search now</button>
@@ -308,315 +313,96 @@
             <section class="category-content">
                 <div class="row">
                      <!-- left side content area -->
-                    <div class="large-8 columns">
-                        <div class="blog-post">
+                 <div class="large-8 columns">
+                        <section class="content content-with-sidebar">
+                            <!-- newest video -->
+                            <div class="main-heading removeMargin">
+                                <div class="row secBg padding-14 removeBorderBottom">
+                                    <div class="medium-8 small-12 columns">
+                                        <div class="head-title">
+                                            <i class="fa fa-search"></i>
+                                            <h4>Search Results for “ Comedy videos ”</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row secBg">
                                 <div class="large-12 columns">
-                                    <div class="blog-post-heading">
-                                        <h3><a href="#">{{ post.title }} </a></h3>
-                                        <p>
-                                            <span><i class="fa fa-user"></i><a href="#">technicalranjit</a></span>
-                                            <span><i class="fa fa-clock-o"></i>{{ post.created_date }}</span>
-                                            <span><i class="fa fa-eye"></i>1,862K</span>
-                                            <span><i class="fa fa-commenting"></i>8</span>
-                                        </p>
-                                    </div>
-                                    <div class="blog-post-content">
-                                        <div class="blog-post-img">
-                                            <img src="{{ post.image }}" alt="blog image">
+                                    <div class="row column head-text clearfix">
+                                        <p class="pull-left">Search Results :<span>{{ request.GET.q }}{{ object.count }}</span></p>
+                                        <div class="grid-system pull-right show-for-large">
+                                            <a class="secondary-button grid-default" href="#"><i class="fa fa-th"></i></a>
+                                            <a class="secondary-button grid-medium" href="#"><i class="fa fa-th-large"></i></a>
+                                            <a class="secondary-button current list" href="#"><i class="fa fa-th-list"></i></a>
                                         </div>
-                                    {% if post.description1 %}
-                                      <pre  class="text-black-50" style="width: auto; height: auto;  padding: 10px; margin-left: 20px;margin-right: 20px;">
-                                        <p class="text-black-50">{{ post.description1 }}</p></pre>
-                                    {% endif %}
-                                        <blockquote>
-                                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                                        </blockquote>
-                                    {% if post.description2 %}
+                                    </div>
+                                    <div class="tabs-content" data-tabs-content="newVideos">
+                                        <div class="tabs-panel is-active" id="new-all">
+                                            <div class="row list-group">
+                                                {% for result in object  %}
 
-                                        <pre  class="text-black-50" style="width: auto; height: auto;  padding: 10px; margin-left: 20px;margin-right: 20px;">
-                                        <p class="text-black-50">{{ post.description2 }}</p></pre>
 
-                                    {% endif %}
-
-                                        {% if post.link %}
-
-                                        <div class="cool_holder" style="margin-top:5vh;margin-bottom: 5vh;">
-      <button class="coolass_button"  id="coolbutton"> </button>
-     </div>
-
-                                        {% endif %}
-                                        <div class="blog-post-extras">
-                                            <div class="categories extras">
-                                                <button><i class="fa fa-folder-open"></i>categories</button>
-                                                <a href="#">Tech</a>
-                                            </div>
-                                            <div class="tags extras">
-                                                <button><i class="fa fa-tags"></i>Categories</button>
-                                                <a href="#">cracked</a>
-                                                <a href="#">software</a>
-                                                <a href="#">serialky</a>
-                                                <a href="#">modded</a>
-                                            </div>
-                                            <div class="social-share extras">
-                                                <div class="post-like-btn clearfix">
-                                                    <div class="easy-share" data-easyshare data-easyshare-http data-easyshare-url="#">
-
-                                                        <button class="float-left"><i class="fa fa-share-alt"></i>share</button>
-                                                        <!-- Facebook -->
-                                                        <button class="removeBorder" data-easyshare-button="facebook">
-                                                            <span class="fa fa-facebook"></span>
-                                                        </button>
-
-                                                        <!-- Twitter -->
-                                                        <button class="removeBorder" data-easyshare-button="twitter" data-easyshare-tweet-text="">
-                                                            <span class="fa fa-twitter"></span>
-                                                        </button>
-
-                                                        <!-- Google+ -->
-                                                        <button class="removeBorder" data-easyshare-button="google">
-                                                            <span class="fa fa-google-plus"></span>
-                                                        </button>
-
-                                                        <div data-easyshare-loader>Loading...</div>
+                                                <div class="item large-4 medium-6 columns list">
+                                                    <div class="post thumb-border">
+                                                        <div class="post-thumb">
+                                                            <img src="images/video-thumbnail/15.jpg" alt="new video">
+                                                            <a href="single-video-v2.html" class="hover-posts">
+                                                                <span><i class="fa fa-play"></i>Watch Video</span>
+                                                            </a>
+                                                            <div class="video-stats clearfix">
+                                                                <div class="thumb-stats pull-left">
+                                                                    <h6>HD</h6>
+                                                                </div>
+                                                                <div class="thumb-stats pull-left">
+                                                                    <i class="fa fa-heart"></i>
+                                                                    <span>506</span>
+                                                                </div>
+                                                                <div class="thumb-stats pull-right">
+                                                                    <span>05:56</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="post-des">
+                                                            <h6><a href="single-video-v2.html">There are many variations of passage.</a></h6>
+                                                            <div class="post-stats clearfix">
+                                                                <p class="pull-left">
+                                                                    <i class="fa fa-user"></i>
+                                                                    <span><a href="#">admin</a></span>
+                                                                </p>
+                                                                <p class="pull-left">
+                                                                    <i class="fa fa-clock-o"></i>
+                                                                    <span>5 January 16</span>
+                                                                </p>
+                                                                <p class="pull-left">
+                                                                    <i class="fa fa-eye"></i>
+                                                                    <span>1,862K</span>
+                                                                </p>
+                                                            </div>
+                                                            <div class="post-summary">
+                                                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto sequi nesciunt.</p>
+                                                            </div>
+                                                            <div class="post-button">
+                                                                <a href="single-video-v2.html" class="secondary-button"><i class="fa fa-play-circle"></i>watch video</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="blog-pagination text-center">
-                                            <a href="#"><i class="fa fa-long-arrow-left left-arrow"></i>previous post</a>
-                                            <a href="#">next post<i class="fa fa-long-arrow-right right-arrow"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- end blog post -->
-                        <!-- post written by -->
-                        <div class="blog-post-written">
-                            <div class="row secBg">
-                                <div class="large-12 columns">
-                                    <div class="media-object">
-                                        <div class="media-object-section">
-                                            <div class="blog-post-author-img">
-                                                <img src="{% static 'images/logo.png' %}" alt="blog post author">
-                                            </div>
-                                        </div>
-                                        <div class="media-object-section">
-                                            <div class="blog-post-author-des">
-                                                <h5>Written by Technical Ranjit</h5>
-                                                <p>This content is copyrighted by technicalranjit.If you have any problem with having this website then you can contact with me by flowing me on facebook of by sending msg with the respective emails or if you have any question or request then go to this link and submit your request</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="text-center loadMore">
+                                        <button class="button" type="button">load more</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-{#                        <!-- Comments -->#}
-{#                        <section class="content comments">#}
-{#                            <div class="row secBg">#}
-{#                                <div class="large-12 columns">#}
-{#                                    <div class="main-heading borderBottom">#}
-{#                                        <div class="row padding-14">#}
-{#                                            <div class="medium-12 small-12 columns">#}
-{#                                                <div class="head-title">#}
-{#                                                    <i class="fa fa-comments"></i>#}
-{#                                                    <h4>Comments <span>(4)</span></h4>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-
-{#                                    <div class="comment-box thumb-border">#}
-{#                                        <div class="media-object stack-for-small">#}
-{#                                            <div class="media-object-section comment-img text-center">#}
-{#                                                <div class="comment-box-img">#}
-{#                                                    <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                </div>#}
-{#                                                <h6><a href="#">Joseph John</a></h6>#}
-{#                                            </div>#}
-{#                                            <div class="media-object-section comment-textarea">#}
-{#                                                <form method="post">#}
-{#                                                    <textarea name="commentText" placeholder="Add a comment here.."></textarea>#}
-{#                                                    <input type="submit" name="submit" value="send">#}
-{#                                                </form>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{##}
-{#                                    <div class="comment-sort text-right">#}
-{#                                        <span>Sort By : <a href="#">newest</a> | <a href="#">oldest</a></span>#}
-{#                                    </div>#}
-{##}
-{#                                    <!-- main comment -->#}
-{#                                    <div class="main-comment showmore_one">#}
-{#                                        <div class="media-object stack-for-small">#}
-{#                                            <div class="media-object-section comment-img text-center">#}
-{#                                                <div class="comment-box-img">#}
-{#                                                    <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="media-object-section comment-desc">#}
-{#                                                <div class="comment-title">#}
-{#                                                    <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                    <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                </div>#}
-{#                                                <div class="comment-text">#}
-{#                                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                </div>#}
-{#                                                <div class="comment-btns">#}
-{#                                                    <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                    <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                    <span class='reply float-right hide-reply'></span>#}
-{#                                                </div>#}
-{##}
-{#                                                <!--sub comment-->#}
-{#                                                <div class="media-object stack-for-small reply-comment">#}
-{#                                                    <div class="media-object-section comment-img text-center">#}
-{#                                                        <div class="comment-box-img">#}
-{#                                                            <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                    <div class="media-object-section comment-desc">#}
-{#                                                        <div class="comment-title">#}
-{#                                                            <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                            <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                        </div>#}
-{#                                                        <div class="comment-text">#}
-{#                                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                        </div>#}
-{#                                                        <div class="comment-btns">#}
-{#                                                            <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                            <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                            <span class='reply float-right hide-reply'></span>#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                </div><!-- end sub comment -->#}
-{##}
-{#                                                <!--sub comment-->#}
-{#                                                <div class="media-object stack-for-small reply-comment">#}
-{#                                                    <div class="media-object-section comment-img text-center">#}
-{#                                                        <div class="comment-box-img">#}
-{#                                                            <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                    <div class="media-object-section comment-desc">#}
-{#                                                        <div class="comment-title">#}
-{#                                                            <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                            <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                        </div>#}
-{#                                                        <div class="comment-text">#}
-{#                                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                        </div>#}
-{#                                                        <div class="comment-btns">#}
-{#                                                            <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                            <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                            <span class='reply float-right hide-reply'></span>#}
-{#                                                        </div>#}
-{##}
-{#                                                    </div>#}
-{#                                                </div><!-- end sub comment -->#}
-{##}
-{#                                            </div>#}
-{#                                        </div>#}
-{##}
-{#                                        <div class="media-object stack-for-small">#}
-{#                                            <div class="media-object-section comment-img text-center">#}
-{#                                                <div class="comment-box-img">#}
-{#                                                    <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="media-object-section comment-desc">#}
-{#                                                <div class="comment-title">#}
-{#                                                    <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                    <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                </div>#}
-{#                                                <div class="comment-text">#}
-{#                                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                </div>#}
-{#                                                <div class="comment-btns">#}
-{#                                                    <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                    <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                    <span class='reply float-right hide-reply'></span>#}
-{#                                                </div>#}
-{##}
-{#                                            </div>#}
-{#                                        </div>#}
-{##}
-{#                                        <div class="media-object stack-for-small">#}
-{#                                            <div class="media-object-section comment-img text-center">#}
-{#                                                <div class="comment-box-img">#}
-{#                                                    <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                            <div class="media-object-section comment-desc">#}
-{#                                                <div class="comment-title">#}
-{#                                                    <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                    <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                </div>#}
-{#                                                <div class="comment-text">#}
-{#                                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                </div>#}
-{#                                                <div class="comment-btns">#}
-{#                                                    <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                    <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                    <span class='reply float-right hide-reply'></span>#}
-{#                                                </div>#}
-{#                                                <!--sub comment-->#}
-{#                                                <div class="media-object stack-for-small reply-comment">#}
-{#                                                    <div class="media-object-section comment-img text-center">#}
-{#                                                        <div class="comment-box-img">#}
-{#                                                            <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                    <div class="media-object-section comment-desc">#}
-{#                                                        <div class="comment-title">#}
-{#                                                            <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                            <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                        </div>#}
-{#                                                        <div class="comment-text">#}
-{#                                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                        </div>#}
-{#                                                        <div class="comment-btns">#}
-{#                                                            <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                            <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                            <span class='reply float-right hide-reply'></span>#}
-{#                                                        </div>#}
-{#                                                        <!--sub comment-->#}
-{#                                                        <div class="media-object stack-for-small reply-comment">#}
-{#                                                            <div class="media-object-section comment-img text-center">#}
-{#                                                                <div class="comment-box-img">#}
-{#                                                                    <img src= "images/post-author-post.png" alt="comment">#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                            <div class="media-object-section comment-desc">#}
-{#                                                                <div class="comment-title">#}
-{#                                                                    <span class="name"><a href="#">Joseph John</a> Said:</span>#}
-{#                                                                    <span class="time float-right"><i class="fa fa-clock-o"></i>1 minute ago</span>#}
-{#                                                                </div>#}
-{#                                                                <div class="comment-text">#}
-{#                                                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventoresunt explicabo.</p>#}
-{#                                                                </div>#}
-{#                                                                <div class="comment-btns">#}
-{#                                                                    <span><a href="#"><i class="fa fa-thumbs-o-up"></i></a> | <a href="#"><i class="fa fa-thumbs-o-down"></i></a></span>#}
-{#                                                                    <span><a href="#"><i class="fa fa-share"></i>Reply</a></span>#}
-{#                                                                    <span class='reply float-right hide-reply'></span>#}
-{#                                                                </div>#}
-{#                                                            </div>#}
-{#                                                        </div><!-- end sub comment -->#}
-{#                                                    </div>#}
-{#                                                </div><!-- end sub comment -->#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div><!-- End main comment -->#}
-
-{#                                </div>#}
-{#                            </div>#}
-{#                        </section><!-- End Comments -->#}
+                        </section>
                         <!-- ad Section -->
                         <div class="googleAdv">
                             <a href="#"><img src="images/goodleadv.png" alt="googel ads"></a>
                         </div><!-- End ad Section -->
-                    </div><!-- end left side content area -->
+                    </div>
+                   <!-- end left side content area -->
                     <!-- sidebar -->
                     <div class="large-4 columns">
                         <aside class="secBg sidebar">
@@ -627,9 +413,10 @@
                                         <div class="widgetTitle">
                                             <h5>Search Videos</h5>
                                         </div>
-                                        <form id="searchform" method="get" role="search">
+                                        <form method="post" action="" >
+                                            {% csrf_token %}
                                             <div class="input-group">
-                                                <input class="input-group-field" type="text" placeholder="Enter your keyword">
+                                                <input class="input-group-field" type="text" name="q" placeholder="Enter your keyword">
                                                 <div class="input-group-button">
                                                     <input type="submit" class="button" value="Submit">
                                                 </div>
@@ -1021,6 +808,11 @@
 
 </script>
 
+
+</body>
+</html></title>
+</head>
+<body>
 
 </body>
 </html>
