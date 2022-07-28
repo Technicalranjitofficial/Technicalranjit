@@ -1,4 +1,4 @@
 ### Hi there 👋
 
 
-The website is live on this url : http://technicalranjitwebapp.herokuapp.com/
+The website is live on this url : https://technicalranjitwebapp.herokuapp.com/
